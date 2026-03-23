@@ -4,13 +4,13 @@ namespace Audio
 {
     public interface IAudioManager
     {
-        public void PlaySound(AudioClip clip);
+        public void PlaySound(AudioClip clip, AudioSource source);
         
-        public void StopSound();
+        public void StopSound(AudioSource source);
         
-        public void PauseSound();
+        public void PauseSound(AudioSource source);
         
-        public void ResumeSound();
+        public void ResumeSound(AudioSource source);
         
         
     }

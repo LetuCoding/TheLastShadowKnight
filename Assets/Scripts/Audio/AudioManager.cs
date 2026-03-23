@@ -3,37 +3,32 @@ using UnityEngine;
 
 namespace Audio
 {
-    public class AudioManager : MonoBehaviour, IAudioManager
+    public class AudioManager :  IAudioManager
     {
         
-        private AudioSource audioSource;
-
-        private void Start()
+        public void PlaySound(AudioClip clip, AudioSource source)
         {
-            audioSource = GetComponent<AudioSource>();
+            source.clip = clip;
+            source.Play();
         }
 
-        public void PlaySound(AudioClip clip)
+        public void StopSound(AudioSource source)
         {
-            audioSource.clip = clip;
-            audioSource.Play();
+            source.Stop();
         }
 
-        public void StopSound()
+        public void PauseSound(AudioSource source)
         {
-            audioSource.Stop();
+            source.Pause();
         }
 
-        public void PauseSound()
+        public void ResumeSound(AudioSource source)
         {
-            audioSource.Pause();
+            source.UnPause();
         }
-
-        public void ResumeSound()
-        {
-            audioSource.UnPause();
-        }
-
+        
+        
+        
         
     }
 }

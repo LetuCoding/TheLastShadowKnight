@@ -4,14 +4,12 @@ using Zenject;
 
 namespace Core
 {
-    public class AudioInstaller : MonoInstaller
+    [CreateAssetMenu(fileName = "AudioInstaller", menuName = "Installers/AudioInstaller")]
+    public class AudioInstaller : ScriptableObjectInstaller
     {
-        
-        [SerializeField] private AudioManager audioManager;
-        
         public override void InstallBindings()
         {
-            Container.Bind<IAudioManager>().FromInstance(audioManager).AsSingle();
+            Container.Bind<IAudioManager>().To<AudioManager>().AsSingle();
         }
     }
 }
