@@ -1,6 +1,12 @@
 # Changelog
 
-## [0.1.1] — 2026-03-23
+## [0.1.3] — 2026-03-25
+
+### Añadido
+
+- extenject used for audiomanager, still in work
+
+## [0.1.1] — 2026-03-25
 
 ### Añadido
 
@@ -15,7 +21,7 @@
 
 - cheatsheet added
 
-## [0.1.0] — 2026-03-23
+## [0.1.0] — 2026-03-25
 
 ### Añadido
 

@@ -1,17 +1,21 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Audio
 {
     public class AudioManager :  IAudioManager
     {
+      
         
         public void PlaySound(AudioClip clip, AudioSource source)
         {
             source.clip = clip;
             source.Play();
+            
         }
-
+        
+        
         public void StopSound(AudioSource source)
         {
             source.Stop();
@@ -26,9 +30,10 @@ namespace Audio
         {
             source.UnPause();
         }
-        
-        
-        
-        
+
+        public void PlaySoundWithFadeIn()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
