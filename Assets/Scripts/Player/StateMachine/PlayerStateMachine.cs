@@ -18,5 +18,6 @@ namespace Player.StateMachine
             CurrentState = newState;
             CurrentState.Enter();
         }
+        
     }
 }

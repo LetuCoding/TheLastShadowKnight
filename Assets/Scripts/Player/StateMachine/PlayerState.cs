@@ -1,16 +1,24 @@
+using Player;
 using Player.StateMachine;
 using UnityEngine;
+using Zenject;
 
 
 public abstract class PlayerState
 {
-    protected PlayerStateMachine fsm;
+    protected PlayerStateMachine Fsm;
     protected Player.Player Player;
+    protected MovementComponent Movement;
+    
+    
+    protected InputSystem_Actions _inputActions;
 
-    public PlayerState(PlayerStateMachine fsm, Player.Player  player)
+    public PlayerState(PlayerStateMachine fsm, Player.Player  player, InputSystem_Actions inputActions)
     {
-        this.fsm = fsm;
+        this.Fsm = fsm;
         this.Player = player;
+        _inputActions = inputActions;
+        Movement = player.movement;
     }
 
     
