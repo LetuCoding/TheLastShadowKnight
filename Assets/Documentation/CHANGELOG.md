@@ -12,7 +12,7 @@
 
 ### Añadido
 
-- BGM manager working on main menu
+- FSM and PlayerState created, idle state and walk state added
 
 ## [0.1.3] — 2026-04-05
 
