@@ -5,13 +5,15 @@ namespace Player.StateMachine.States
 {
     public class JumpState : PlayerState
     {
+        
+        private float _timeInState;
         public JumpState(PlayerStateMachine fsm, Player player, InputSystem_Actions inputActions) : base(fsm, player, inputActions)
         {
         }
 
         public override void Enter()
         {
-            
+            _timeInState = 0f;
             Movement.Jump(8);
             
         }
@@ -23,11 +25,10 @@ namespace Player.StateMachine.States
 
         public override void LogicUpdate()
         {
-            if (Player.isGrounded)
-            { 
-                Debug.Log("Changing to idle state");
+            _timeInState += Time.deltaTime;
+
+            if (_timeInState > 0.1f && Player.isGrounded)
                 Fsm.ChangeState(Player.idleState);
-            }
             
         }
 

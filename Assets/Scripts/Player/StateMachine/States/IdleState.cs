@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Lumin;
 
 namespace Player.StateMachine.States
 {
@@ -10,23 +11,25 @@ namespace Player.StateMachine.States
         
         public override void Enter()
         {
-            Debug.Log("Entering IdleState");
+            
         }
 
         public override void Exit()
         {
-            Debug.Log("Exiting IdleState");
+          
         }
 
         public override void LogicUpdate()
         {
+          
+            
             //if move pressed, change state
             if (Player.jumpPressed)
             {
-                Debug.Log("Changing jump");
-                Fsm.ChangeState(Player.jumpState);
+               Fsm.ChangeState(Player.jumpState);
                 
             }
+            
         }
     }
 }

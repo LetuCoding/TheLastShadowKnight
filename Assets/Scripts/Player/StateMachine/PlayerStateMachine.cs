@@ -14,6 +14,7 @@ namespace Player.StateMachine
 
         public void ChangeState(PlayerState newState)
         {
+          
             CurrentState.Exit();
             CurrentState = newState;
             CurrentState.Enter();

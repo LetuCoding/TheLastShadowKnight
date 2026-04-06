@@ -78,14 +78,18 @@ namespace Player
 
         private void Update()
         {
+            
+            
+            
             jumpPressed = _inputActions.Player.Jump.WasPressedThisFrame();
             jumpReleased = _inputActions.Player.Jump.WasReleasedThisFrame();
             
             
             
             
-            
+            Debug.Log(fsm.CurrentState);
             fsm.CurrentState.LogicUpdate();
+            
             
             CheckGrounded();
         }
@@ -100,6 +104,7 @@ namespace Player
             if (Physics2D.OverlapCircle(groundCheck.position, groundCheckDistance, groundLayer))
             {
                 isGrounded = true;
+                return;
             }
             isGrounded = false;
         }
