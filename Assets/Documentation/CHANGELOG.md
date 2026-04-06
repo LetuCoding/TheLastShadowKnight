@@ -1,6 +1,17 @@
 # Changelog
 
-## [Sin publicar] — 2026-04-05
+## [0.1.6] — 2026-04-06
+
+### Arreglado
+
+- Jump state not changing the right way
+
+
+### Documentación
+
+- changelog updated
+
+## [0.1.5] — 2026-04-06
 
 ### Añadido
 
@@ -8,19 +19,19 @@
 
 - idle state, movement and jump state added
 
-## [0.1.4] — 2026-04-05
+## [0.1.4] — 2026-04-06
 
 ### Añadido
 
-- FSM and PlayerState created, idle state and walk state added
+- BGM manager working on main menu
 
-## [0.1.3] — 2026-04-05
+## [0.1.3] — 2026-04-06
 
 ### Añadido
 
 - extenject used for audiomanager, still in work
 
-## [0.1.1] — 2026-04-05
+## [0.1.1] — 2026-04-06
 
 ### Añadido
 
@@ -35,7 +46,7 @@
 
 - cheatsheet added
 
-## [0.1.0] — 2026-04-05
+## [0.1.0] — 2026-04-06
 
 ### Añadido
 
