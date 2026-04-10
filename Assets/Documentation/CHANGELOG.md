@@ -1,6 +1,27 @@
 # Changelog
 
-## [0.1.6] — 2026-04-06
+## [0.2.0] — 2026-04-10
+
+### Arreglado
+
+- correct wall-jump arc and state transition logic
+
+
+### Añadido
+
+- add FallState and DashState to FSM
+
+
+### Cambiado
+
+- centralise all Rigidbody writes in MovementComponent
+
+
+### Documentación
+
+- changelog 0.1.6
+
+## [0.1.6] — 2026-04-10
 
 ### Arreglado
 
@@ -11,7 +32,7 @@
 
 - changelog updated
 
-## [0.1.5] — 2026-04-06
+## [0.1.5] — 2026-04-10
 
 ### Añadido
 
@@ -19,19 +40,19 @@
 
 - idle state, movement and jump state added
 
-## [0.1.4] — 2026-04-06
+## [0.1.4] — 2026-04-10
 
 ### Añadido
 
 - BGM manager working on main menu
 
-## [0.1.3] — 2026-04-06
+## [0.1.3] — 2026-04-10
 
 ### Añadido
 
 - extenject used for audiomanager, still in work
 
-## [0.1.1] — 2026-04-06
+## [0.1.1] — 2026-04-10
 
 ### Añadido
 
@@ -46,7 +67,7 @@
 
 - cheatsheet added
 
-## [0.1.0] — 2026-04-06
+## [0.1.0] — 2026-04-10
 
 ### Añadido
 
