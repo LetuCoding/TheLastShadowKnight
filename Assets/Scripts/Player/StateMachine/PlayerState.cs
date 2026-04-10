@@ -18,7 +18,7 @@ public abstract class PlayerState
         this.Fsm = fsm;
         this.Player = player;
         _inputActions = inputActions;
-        Movement = player.movement;
+        Movement = player.MovementComponent;
     }
 
     
