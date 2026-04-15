@@ -31,6 +31,11 @@ namespace Player.StateMachine.States
                 return;
             }
 
+            if (Player.AttackPressed)
+            {
+                Fsm.ChangeState(Player.AttackState);
+            }
+
             if (Player.JumpPressed)
             {
                 Fsm.ChangeState(Player.JumpState);

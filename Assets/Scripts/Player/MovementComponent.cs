@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Player
@@ -15,6 +16,11 @@ namespace Player
         /// <summary>The Rigidbody2D attached to the player. Read-only from outside.</summary>
         public Rigidbody2D Rigidbody { get; private set; }
 
+        private float _speed;
+
+        private float _currentSpeed;
+        
+        
         #endregion
 
 
@@ -48,16 +54,30 @@ namespace Player
         /// <param name="isGrounded">Used to decide whether to brake or preserve momentum.</param>
         public void Move(float input, float speed, bool isGrounded)
         {
+            _speed = speed * input;
+            _currentSpeed = Rigidbody.linearVelocity.x;
+            
+            bool sameSign = Math.Sign(_speed) == Math.Sign(_currentSpeed);
+            bool inputStronger = Math.Abs(_speed) >= Mathf.Abs(_currentSpeed);
+            
             if (input != 0f)
             {
-                // Active input: full speed in that direction.
-                Rigidbody.linearVelocity = new Vector2(input * speed, Rigidbody.linearVelocity.y);
+
+
+                //Different direction or higher speed on input: move full speed
+                if (!sameSign || inputStronger || isGrounded)
+                {
+                    Rigidbody.linearVelocity = new Vector2(input * speed, Rigidbody.linearVelocity.y);
+                }
+                
             }
+            
             else if (isGrounded)
             {
                 // On the ground with no input: brake immediately.
                 Rigidbody.linearVelocity = new Vector2(0f, Rigidbody.linearVelocity.y);
             }
+            
             // Air + no input: intentional no-op.
             // Current X is preserved so wall-jump arcs carry naturally.
         }

@@ -72,6 +72,7 @@ namespace Player
 
         /// <summary>Last non-zero horizontal input. Used to determine dash direction.</summary>
         public float LastMoveInput { get; private set; }
+        public int FacingDirection { get; private set; } = 1;
 
         /// <summary>True for the frame the Jump button was pressed.</summary>
         public bool JumpPressed  { get; private set; }
@@ -79,6 +80,9 @@ namespace Player
         /// <summary>True for the frame the Jump button was released.</summary>
         public bool JumpReleased { get; private set; }
 
+        // <summary> True for the frame the Attack button was Pressed. </sumarry>
+        public bool AttackPressed {  get; private set; }
+        
         /// <summary>True for the frame the Dash button was pressed.</summary>
         public bool DashPressed  { get; private set; }
 
@@ -123,6 +127,8 @@ namespace Player
         public FallState FallState { get; private set; }
         public DashState DashState { get; private set; }
         public WallState WallState { get; private set; }
+        
+        public AttackState AttackState  { get; private set; }
 
         #endregion
 
@@ -153,6 +159,7 @@ namespace Player
             FallState = new FallState(_fsm, this, _inputActions);
             DashState = new DashState(_fsm, this, _inputActions);
             WallState = new WallState(_fsm, this, _inputActions);
+            AttackState = new AttackState(_fsm, this, _inputActions);
 
             _inputActions.Enable();
             _fsm.Initialize(IdleState);
@@ -177,7 +184,11 @@ namespace Player
             // All horizontal movement logic lives in MovementComponent.Move().
             // Passing MoveInput = 0 during wall-jump lockout triggers the air no-op
             // automatically, so the impulse arc carries without any extra flag here.
-            MovementComponent.Move(MoveInput, speed, IsGrounded);
+            if (!AttackState.IsAttacking)
+            {
+                MovementComponent.Move(MoveInput, speed, IsGrounded);
+                
+            }
 
             _fsm.CurrentState.PhysicsUpdate();
         }
@@ -241,14 +252,31 @@ namespace Player
             JumpPressed  = _inputActions.Player.Jump.WasPressedThisFrame();
             JumpReleased = _inputActions.Player.Jump.WasReleasedThisFrame();
             DashPressed  = _inputActions.Player.Dash.WasPressedThisFrame();
-
+            AttackPressed = _inputActions.Player.Attack.WasPressedThisFrame();
+            
             // Do not read real input while the lockout coroutine is managing MoveInput.
             if (!IsWallJumping)
             {
                 MoveInput = _inputActions.Player.Move.ReadValue<Vector2>().x;
-                if (MoveInput != 0f)
+                if (MoveInput > 0.01f)
+                {
                     LastMoveInput = MoveInput;
+                    FacingDirection = 1;
+                    
+                }
+                else if (MoveInput < 0)
+                {
+                    
+                    FacingDirection = -1;
+                    LastMoveInput = MoveInput;
+                }
+                else if ( MoveInput == 0f)
+                {
+                    LastMoveInput = 1f;
+                }
             }
+            
+            Logs();
         }
 
         private void RefreshSensors()
@@ -275,6 +303,16 @@ namespace Player
             IsOnWall      = (IsOnLeftWall || IsOnRightWall) && !IsGrounded;
         }
 
+
+        private void Logs()
+        {
+            Debug.Log(AttackPressed);
+          /*  
+            Debug.Log(_fsm.CurrentState);
+            
+        */
+            
+        }
         #endregion
 
 

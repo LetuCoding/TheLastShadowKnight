@@ -22,7 +22,7 @@ namespace Player.StateMachine.States
         public override void Enter()
         {
             // Restore gravity in case we came from WallState (which sets it to 0).
-            Player.MovementComponent.SetGravity(3.5f);
+            
 
             // Wall jumps apply their own impulse via Player.WallJump() before
             // transitioning here, so we only call Jump() for normal ground jumps.
